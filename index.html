@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1 class="titletext">Hello World</h1>
+    <div id="greetings">fluke</div>
+    <button id="changecolor">change clolor</button>
+    <button id="hideele">Hide elements</button> -->
+    <input type="text" id="todo">
+    <button onclick="addElement()">Add elements</button>
+    <div id="results">
+
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // function addElement(){
+        //     let newElement = document.createElement("p")
+        //     newElement.innerHTML = "Hello world"
+        //     let result = document.getElementById('results')
+        //     result.appendChild(newElement)
+        // }
+
+        fetch("https://jsonplaceholder.typicode.com/todos")
+            .then((response) => response.json())
+            .then((json) => {
+                let result = document.getElementById("results");
+                for (let i = 0; i < json.length; i++) {
+                    let newElement = document.createElement("p");
+                    newElement.innerHTML = json[i].title;
+                    result.appendChild(newElement);
+                }
+            });
+
+        function addElement() {
+            let newElement = document.createElement("p")
+            newElement.innerHTML = document.getElementById('todo').value
+            let result = document.getElementById('results')
+            result.appendChild(newElement)
+            document.getElementById('todo').value = ""
+        }
+    </script>
+</body>
+
+</html>
